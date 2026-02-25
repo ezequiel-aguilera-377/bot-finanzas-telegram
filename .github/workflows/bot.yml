@@ -23,5 +23,6 @@ jobs:
 
       - name: Ejecutar bot
         env:
-          TOKEN: ${{ secrets.TOKEN }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
         run: python bot_finanzas.py
