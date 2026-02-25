@@ -1,0 +1,27 @@
+name: Bot Finanzas Diario
+
+on:
+  schedule:
+    - cron: '0 11 * * 1-5'   # 08:00 Argentina (11:00 UTC) lunes a viernes
+  workflow_dispatch:        # Permite ejecutarlo manualmente
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar bot
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+        run: python bot_finanzas.py
